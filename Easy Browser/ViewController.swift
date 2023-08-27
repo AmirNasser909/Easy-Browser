@@ -6,12 +6,20 @@
 //
 
 import UIKit
-
-class ViewController: UIViewController {
-
+import WebKit
+class ViewController: UIViewController, WKNavigationDelegate  {
+    var webView: WKWebView!
+    override func loadView() {
+        webView = WKWebView()
+        webView.navigationDelegate = self
+        view = webView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+            let url = URL(string: "https://www.amazon.eg")!
+        webView.load(URLRequest(url: url))
+        webView.allowsBackForwardNavigationGestures = true
     }
 
 
